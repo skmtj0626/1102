@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        <button id="megane1Btn">メガネ１</button>
+        <button id="megane2Btn">メガネ2</button>
+        <button id="megane3Btn">メガネ3</button>
+    </div>
+
+    <a-scene id="scene" mindar-face embedded>
+        <a-entity id="face" mindar-face-target="anchorIndex: 168">
+            <a-gltf-model
+                id="accessory"
+                src="megane1.glb"
+                position="-0.07 0 -0.1"
+                rotation="0 -180 0"
+                scale="0.7 0.7 0.7">
+            </a-gltf-model>
+        </a-entity>
+        <a-camera position="0 0 0"></a-camera>
+    </a-scene>
+
+    <script>
+        const accessory = document.getElementById("accessory");
+        const megane1Btn = document.getElementById("megane1Btn");
+        const megane2Btn = document.getElementById("megane2Btn");
+        const megane3Btn = document.getElementById("megane3Btn");
+
+        function toMegane1() {
+            accessory.setAttribute("src", "megane1.glb");
+            accessory.setAttribute("position", "-0.07 0 -0.1");
+            accessory.setAttribute("rotation", "0 -180 0");
+            accessory.setAttribute("scale", "0.7 0.7 0.7");
+        }
+
+        function toMegane2() {
+            accessory.setAttribute("src", "megane2.glb");
+            accessory.setAttribute("position", "0 0 -0.1");
+            accessory.setAttribute("rotation", "0 0 0");
+            accessory.setAttribute("scale", "0.55 0.55 0.55");
+        }
+
+        function toMegane3() {
+            accessory.setAttribute("src", "megane3.glb");
+            accessory.setAttribute("position", "0 0 -0.1");
+            accessory.setAttribute("rotation", "0 0 0");
+            accessory.setAttribute("scale", "0.55 0.55 0.55");
+        }
+
+        megane1Btn.addEventListener("click", toMegane1);
+        megane2Btn.addEventListener("click", toMegane2);
+        megane3Btn.addEventListener("click", toMegane3);
+    </script>
+</body>
+</html>
